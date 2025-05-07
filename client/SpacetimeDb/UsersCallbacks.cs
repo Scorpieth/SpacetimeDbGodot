@@ -16,17 +16,12 @@ public static class UsersCallbacks
 
     private static void UserUpdated(EventContext context, User oldUser, User newUser)
     {
-        if (oldUser.Online != newUser.Online)
-        {
-            GameEvents.Instance.EmitUserOnlineStatusChanged(newUser);
-        }
+        GD.Print("User updated");
     }
 
     private static void UserInserted(EventContext ctx, User user)
     {
-        if (user.Online)
-        {
-            GameEvents.Instance.EmitUserConnected(user);
-        }
+        GD.Print("User inserted");
+        GameEvents.Instance.EmitUserConnected(user);
     }
 }

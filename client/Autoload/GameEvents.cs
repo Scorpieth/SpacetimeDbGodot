@@ -12,9 +12,7 @@ public partial class GameEvents : RefCounted
     
     [Signal]
     public delegate void OnUserInsertedEventHandler(GameUser user);
-
-    [Signal]
-    public delegate void OnUserOnlineStatusChangedEventHandler(GameUser user);
+    
     [Signal]
     public delegate void OnUserDeletedEventHandler(GameUser user);
 
@@ -26,10 +24,4 @@ public partial class GameEvents : RefCounted
 
     public void EmitUserDisconnected(User user) =>
         EmitSignal(SignalName.OnUserDeleted, GameUser.FromSpacetimeUser(user));
-
-    public void EmitUserOnlineStatusChanged(User user)
-    {
-        GD.Print("EmitUserOnlineStatusChanged");
-        EmitSignal(SignalName.OnUserOnlineStatusChanged, GameUser.FromSpacetimeUser(user));
-    }
 }

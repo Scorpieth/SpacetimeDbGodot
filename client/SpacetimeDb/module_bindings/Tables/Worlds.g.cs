@@ -13,27 +13,27 @@ namespace SpacetimeDB.Types
 {
     public sealed partial class RemoteTables
     {
-        public sealed class EntitiesHandle : RemoteTableHandle<EventContext, Entity>
+        public sealed class WorldsHandle : RemoteTableHandle<EventContext, ServerWorldConfig>
         {
-            protected override string RemoteTableName => "Entities";
+            protected override string RemoteTableName => "Worlds";
 
             public sealed class IdUniqueIndex : UniqueIndexBase<uint>
             {
-                protected override uint GetKey(Entity row) => row.Id;
+                protected override uint GetKey(ServerWorldConfig row) => row.Id;
 
-                public IdUniqueIndex(EntitiesHandle table) : base(table) { }
+                public IdUniqueIndex(WorldsHandle table) : base(table) { }
             }
 
             public readonly IdUniqueIndex Id;
 
-            internal EntitiesHandle(DbConnection conn) : base(conn)
+            internal WorldsHandle(DbConnection conn) : base(conn)
             {
                 Id = new(this);
             }
 
-            protected override object GetPrimaryKey(Entity row) => row.Id;
+            protected override object GetPrimaryKey(ServerWorldConfig row) => row.Id;
         }
 
-        public readonly EntitiesHandle Entities;
+        public readonly WorldsHandle Worlds;
     }
 }

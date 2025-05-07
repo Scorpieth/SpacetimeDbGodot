@@ -11,25 +11,24 @@ namespace SpacetimeDB.Types
 {
     [SpacetimeDB.Type]
     [DataContract]
-    public sealed partial class Entity
+    public sealed partial class ServerWorldConfig
     {
         [DataMember(Name = "Id")]
         public uint Id;
-        [DataMember(Name = "Position")]
-        public SpacetimeVector3 Position;
+        [DataMember(Name = "WorldSize")]
+        public ulong WorldSize;
 
-        public Entity(
+        public ServerWorldConfig(
             uint Id,
-            SpacetimeVector3 Position
+            ulong WorldSize
         )
         {
             this.Id = Id;
-            this.Position = Position;
+            this.WorldSize = WorldSize;
         }
 
-        public Entity()
+        public ServerWorldConfig()
         {
-            this.Position = new();
         }
     }
 }

@@ -12,6 +12,7 @@ public sealed class SpacetimeClient
     private ConcurrentQueue<(string command, string args)> InputQueue = new();
 
     private DbConnection _connection;
+    public DbConnection Connection => _connection;
 
     private const string Host = "http://localhost:3000";
     private const string Dbname = "spacetimegodot";
@@ -22,7 +23,7 @@ public sealed class SpacetimeClient
     /// Local identity of signed in user
     /// </summary>
     public Identity LocalIdentity { get; private set; }
-
+    
     public bool Connected => _connection != null && _connection.IsActive;
     
     /// <summary>

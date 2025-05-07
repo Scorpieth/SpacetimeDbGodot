@@ -15,20 +15,20 @@ namespace SpacetimeDB.Types
     {
         [DataMember(Name = "Identity")]
         public SpacetimeDB.Identity Identity;
+        [DataMember(Name = "UserId")]
+        public uint UserId;
         [DataMember(Name = "Name")]
         public string Name;
-        [DataMember(Name = "Online")]
-        public bool Online;
 
         public User(
             SpacetimeDB.Identity Identity,
-            string Name,
-            bool Online
+            uint UserId,
+            string Name
         )
         {
             this.Identity = Identity;
+            this.UserId = UserId;
             this.Name = Name;
-            this.Online = Online;
         }
 
         public User()

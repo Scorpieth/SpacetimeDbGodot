@@ -8,7 +8,7 @@ public partial class UserName
     [Reducer]
     public static void Set(ReducerContext ctx, string newName)
     {
-        var user = ctx.GetUser();
+        var user = ctx.GetCurrentUser();
 
         if (user is null)
         {
