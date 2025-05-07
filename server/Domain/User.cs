@@ -9,8 +9,14 @@ public partial class User
     public string Name;
     public bool Online;
 
-    public User(string name, bool online)
+    public User()
     {
+        
+    }
+    
+    public User(Identity identity, string name, bool online)
+    {
+        Identity = identity;
         Name = name;
         Online = online;
     }

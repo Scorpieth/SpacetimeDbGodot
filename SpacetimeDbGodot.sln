@@ -2,7 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StdbModule", "server\StdbModule.csproj", "{A1B72565-6D09-4150-AE3C-E6B6D817BF16}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GodotClient", "client\GodotClient.csproj", "{BB8F872D-29DB-480A-8B6B-64504A4398C7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GodotClient", "client/GodotClient.csproj", "{BB8F872D-29DB-480A-8B6B-64504A4398C7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpacetimeDbConversionTypes", "SpacetimeDbConversionTypes\SpacetimeDbConversionTypes.csproj", "{2DD46DF2-5808-4B7A-A7CC-912D7FA51FEA}"
 EndProject

@@ -5,4 +5,7 @@
     <RootNamespace>GodotClient</RootNamespace>
     <AssemblyName>GodotClient</AssemblyName>
   </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="SpacetimeDB.ClientSDK" Version="1.1.1" />
+  </ItemGroup>
 </Project>
