@@ -1,47 +1,67 @@
 using System;
 using System.Collections.Concurrent;
-using System.Threading;
 using Godot;
 using SpacetimeDB;
 using SpacetimeDB.Types;
 
 namespace GodotClient.SpacetimeDb;
 
+/// <summary>
+/// Stdb singleton client.<br/> Initialize this client by running Connect in the _Ready method of where you want to connect to stdb.
+/// </summary>
 public sealed class SpacetimeClient
 {
     private ConcurrentQueue<(string command, string args)> InputQueue = new();
 
     private DbConnection _connection;
-    public DbConnection Connection => _connection;
 
     private const string Host = "http://localhost:3000";
     private const string Dbname = "spacetimegodot";
     
     private static SpacetimeClient _instance;
-    
+
+    private Identity _localIdentity;
+
     /// <summary>
     /// Local identity of signed in user
     /// </summary>
-    public Identity LocalIdentity { get; private set; }
-    
+    public static Identity LocalIdentity => Instance._localIdentity;
+
+    /// <summary>
+    /// Shorthand accessor for Remote Reducers (stdb server calls)
+    /// </summary>
+    public static RemoteReducers Reducers => Instance._connection.Reducers;
+
+    /// <summary>
+    /// Shorthand accessor for Remote Tables
+    /// </summary>
+    public static RemoteTables Db => Instance._connection.Db;
     public bool Connected => _connection != null && _connection.IsActive;
     
     /// <summary>
     /// Gets the singleton instance of Spacetime. Always initialize the Spacetime first.
     /// </summary>
     /// <returns>
-    /// The singleton instance of Spacetime that has been initialized.
+    /// The singleton instance of SpacetimeClient.
     /// </returns>
-    /// <exception cref="ArgumentNullException">Spacetime is null. Has not been initialized or destroyed during runtime</exception>
     public static SpacetimeClient Instance => _instance ??= new SpacetimeClient();
 
-    public void Connect()
+    public static void Connect()
     {
         AuthToken.Init();
         GD.Print("Creating connection..");
-        _connection = CreateSpacetimeConnection(Host, Dbname, AuthToken.Token);
+        Instance._connection = Instance.CreateSpacetimeConnection(Host, Dbname, AuthToken.Token);
         GD.Print("Registering callbacks..");
-        _connection.RegisterUsersCallbacks();
+        Instance._connection.RegisterUsersCallbacks();
+    }
+
+    /// <summary>
+    /// Run this in a constantly running process. You need this to get served with callbacks from stdb. <br/><br/>
+    /// Recommended to run in PhysicsProcess
+    /// </summary>
+    public static void FrameTick()
+    {
+        Instance._connection.FrameTick();
     }
 
     private DbConnection CreateSpacetimeConnection(string host, string db, string token)
@@ -60,7 +80,7 @@ public sealed class SpacetimeClient
     private void OnConnected(DbConnection connection, Identity identity, string token)
     {
         GD.Print("Connected to SpacetimeDb");
-        LocalIdentity = identity;
+        _localIdentity = identity;
         AuthToken.SaveToken(token);
         
         connection.SubscriptionBuilder().SubscribeToAllTables();

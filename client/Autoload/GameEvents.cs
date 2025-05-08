@@ -15,6 +15,9 @@ public partial class GameEvents : RefCounted
     
     [Signal]
     public delegate void OnUserDeletedEventHandler(GameUser user);
+    
+    [Signal]
+    public delegate void OnUserNameUpdatedEventHandler(string userName);
 
     public void EmitUserConnected(User user)
     {
@@ -24,4 +27,6 @@ public partial class GameEvents : RefCounted
 
     public void EmitUserDisconnected(User user) =>
         EmitSignal(SignalName.OnUserDeleted, GameUser.FromSpacetimeUser(user));
+
+    public void EmitUserNameUpdated(string userName) => EmitSignal(SignalName.OnUserNameUpdated, userName);
 }

@@ -1,8 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://b7i01jvbsx4uk"]
+[gd_scene load_steps=3 format=3 uid="uid://b7i01jvbsx4uk"]
 
 [ext_resource type="Script" uid="uid://mu7o1eww5drr" path="res://MainMenu.cs" id="1_06t4h"]
+[ext_resource type="PackedScene" uid="uid://mcd1d135rwae" path="res://TestWorldMap.tscn" id="2_7vrkn"]
 
-[node name="Main Menu" type="Control"]
+[node name="Main Menu" type="Control" node_paths=PackedStringArray("_nameValue", "_nameEdit", "_goToWorldButton", "_setNameButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,24 +12,35 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 script = ExtResource("1_06t4h")
+_nameValue = NodePath("Panel/HBoxContainer/NameValue")
+_nameEdit = NodePath("VBoxContainer/TextEdit")
+_goToWorldButton = NodePath("VBoxContainer/GoToWorld")
+_setNameButton = NodePath("VBoxContainer/SetName")
+_world = ExtResource("2_7vrkn")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -50.5
-offset_top = -33.0
-offset_right = 50.5
-offset_bottom = 33.0
+offset_left = -100.0
+offset_top = -55.0
+offset_right = 100.0
+offset_bottom = 55.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="GoToWorld" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-text = "Go to World"
+text = "Enter World"
+
+[node name="TextEdit" type="TextEdit" parent="VBoxContainer"]
+custom_minimum_size = Vector2(70, 40)
+layout_mode = 2
+text = "Put your name here"
 
 [node name="SetName" type="Button" parent="VBoxContainer"]
 layout_mode = 2

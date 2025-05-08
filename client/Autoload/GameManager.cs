@@ -9,17 +9,14 @@ public partial class GameManager : Node
     public GameUser CurrentUser => _currentUser;
     private GameUser _currentUser;
     
-    private SpacetimeClient _spacetimeClient;
     
     public override void _Ready()
     {
-        // Connect to SpacetimeDB
-        _spacetimeClient = SpacetimeClient.Instance;
-        _spacetimeClient.Connect();
+        SpacetimeClient.Connect();
     }
 
     public override void _PhysicsProcess(double delta)
     {
-        _spacetimeClient.Connection.FrameTick();
+        SpacetimeClient.FrameTick();
     }
 }

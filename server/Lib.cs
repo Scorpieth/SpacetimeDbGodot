@@ -8,6 +8,6 @@ public static partial class Module
     {
         Log.Info("Initializing...");
 
-        ctx.Db.Worlds.Insert(new ServerWorldConfig(1000));
+        ctx.Db.Worlds.Insert(new ServerWorldConfig(0, 1000));
     }
 }

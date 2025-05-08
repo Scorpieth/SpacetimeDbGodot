@@ -13,8 +13,9 @@ public partial struct ServerWorldConfig
         
     }
 
-    public ServerWorldConfig(ulong worldSize)
+    public ServerWorldConfig(uint id, ulong worldSize)
     {
+        Id = id;
         WorldSize = worldSize;
     }
 }

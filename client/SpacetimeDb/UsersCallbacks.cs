@@ -10,10 +10,22 @@ public static class UsersCallbacks
     {
         connection.Db.Users.OnInsert += UserInserted;
         connection.Db.Users.OnUpdate += UserUpdated;
+
+        connection.Reducers.OnSet += UserNameUpdated;
         GD.Print("User callbacks registered..");
         return connection;
     }
 
+    private static void UserNameUpdated(ReducerEventContext ctx, string newName)
+    {
+        if (ctx.Identity != SpacetimeClient.LocalIdentity)
+        {
+            return;
+        }
+        
+        GameEvents.Instance.EmitUserNameUpdated(newName);
+    }
+    
     private static void UserUpdated(EventContext context, User oldUser, User newUser)
     {
         GD.Print("User updated");

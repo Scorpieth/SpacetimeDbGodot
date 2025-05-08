@@ -1,0 +1,58 @@
+[gd_scene load_steps=10 format=3 uid="uid://mcd1d135rwae"]
+
+[ext_resource type="Script" uid="uid://dyv5mxg1n852o" path="res://TestWorldMap.cs" id="1_rlkt5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vh432"]
+albedo_color = Color(0.105779, 0.621172, 1.15514e-06, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vh432"]
+material = SubResource("StandardMaterial3D_vh432")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mkqyr"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rlkt5"]
+sky_top_color = Color(0.293024, 0.330395, 1, 1)
+sky_horizon_color = Color(0.919449, 0.392559, 1, 1)
+ground_bottom_color = Color(1, 0.849445, 0.846443, 1)
+ground_horizon_color = Color(0.935449, 0.373684, 1, 1)
+ground_energy_multiplier = 0.6
+
+[sub_resource type="Sky" id="Sky_vh432"]
+sky_material = SubResource("ProceduralSkyMaterial_rlkt5")
+
+[sub_resource type="Environment" id="Environment_mkqyr"]
+background_mode = 2
+sky = SubResource("Sky_vh432")
+ambient_light_source = 3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rlkt5"]
+albedo_color = Color(0.393086, 0.393086, 0.393085, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_rlkt5"]
+material = SubResource("StandardMaterial3D_rlkt5")
+
+[node name="TestWorldMap" type="Node3D" node_paths=PackedStringArray("_mesh", "_collision")]
+script = ExtResource("1_rlkt5")
+_mesh = NodePath("StaticBody3D/MeshInstance3D")
+_collision = NodePath("StaticBody3D/CollisionShape3D")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("BoxMesh_vh432")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_mkqyr")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.46147, 0.887156, 0, -0.887156, 0.46147, 0, 29.0166, 12.2357)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_mkqyr")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.794203, 0.607653, 0, -0.607653, 0.794203, 0, 2.65064, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0967, 0)
+mesh = SubResource("BoxMesh_rlkt5")
