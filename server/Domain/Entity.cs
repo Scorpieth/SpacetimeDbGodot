@@ -8,17 +8,14 @@ public partial struct Entity
 {
     [AutoInc] 
     [PrimaryKey] 
-    public uint Id;
+    public uint EntityId;
+    
     public SpacetimeVector3 Position;
 
-    public Entity()
-    {
-        
-    }
+    public Entity() { }
 
-    public Entity(uint id, SpacetimeVector3 position)
+    public Entity(SpacetimeVector3 position)
     {
-        Id = id;
         Position = position;
     }
 }

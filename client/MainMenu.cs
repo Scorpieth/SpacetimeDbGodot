@@ -20,6 +20,8 @@ public partial class MainMenu : Control
             GetTree().Root.AddChild(world);
             world.SetUp(SpacetimeClient.Db.Worlds.Id.Find(0)?.WorldSize ?? 1);
             Hide();
+            
+            
         };
         _setNameButton.Pressed += () =>
         {

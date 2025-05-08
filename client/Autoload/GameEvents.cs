@@ -19,6 +19,9 @@ public partial class GameEvents : RefCounted
     [Signal]
     public delegate void OnUserNameUpdatedEventHandler(string userName);
 
+    [Signal]
+    public delegate void OnEnterWorldEventHandler();
+
     public void EmitUserConnected(User user)
     {
         GD.Print("EmitUserConnected");
@@ -29,4 +32,6 @@ public partial class GameEvents : RefCounted
         EmitSignal(SignalName.OnUserDeleted, GameUser.FromSpacetimeUser(user));
 
     public void EmitUserNameUpdated(string userName) => EmitSignal(SignalName.OnUserNameUpdated, userName);
+
+    public void EmitEnterWorld() => EmitSignal(SignalName.OnEnterWorld);
 }

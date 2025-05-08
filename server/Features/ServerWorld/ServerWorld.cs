@@ -11,13 +11,20 @@ public partial class ServerWorld
     public static void EnterWorld(ReducerContext ctx)
     {
         var user = ctx.GetCurrentUser();
-        SpawnUserEntity(ctx, user.UserId);
+        SpawnUserPlayer(ctx, user.UserId);
     }
 
-    private static Entity SpawnUserEntity(ReducerContext ctx, uint userId)
+    private static Entity SpawnUserPlayer(ReducerContext ctx, uint userId)
     {
-        var entity = new Entity(userId, new SpacetimeVector3(5, 2, 5));
-        ctx.Db.Entities.Insert(entity);
+        var entity = ctx.Db.Entities.Insert(new Entity(new SpacetimeVector3(5, 2, 5)));
+
+        ctx.Db.Players.Insert(new Player
+        {
+            UserId = userId,
+            EntityId = entity.EntityId,
+            Direction = new SpacetimeVector3(0, 0, 0),
+            Speed = 0f,
+        });
         
         return entity;
     }

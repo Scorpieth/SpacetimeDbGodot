@@ -10,7 +10,11 @@ public static partial class UserInputs
     public static void UpdateUserInput(ReducerContext ctx, SpacetimeVector3 direction)
     {
         var user = ctx.GetCurrentUser() ?? throw new Exception("User not found");
-        
-        
+
+        var player = ctx.Db.Players.UserId.Filter(user.UserId).First();
+
+        player.Direction = direction;
+        player.Speed = 10f;
+        ctx.Db.Players.EntityId.Update(player);
     }
 }

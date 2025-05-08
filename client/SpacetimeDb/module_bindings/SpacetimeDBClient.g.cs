@@ -23,6 +23,8 @@ namespace SpacetimeDB.Types
         {
             AddTable(Entities = new(conn));
             AddTable(LoggedOutUsers = new(conn));
+            AddTable(MovePlayersSchedules = new(conn));
+            AddTable(Players = new(conn));
             AddTable(Users = new(conn));
             AddTable(Worlds = new(conn));
         }
@@ -471,7 +473,9 @@ namespace SpacetimeDB.Types
                 "ClientConnected" => BSATNHelpers.Decode<Reducer.ClientConnected>(encodedArgs),
                 "ClientDisconnected" => BSATNHelpers.Decode<Reducer.ClientDisconnected>(encodedArgs),
                 "EnterWorld" => BSATNHelpers.Decode<Reducer.EnterWorld>(encodedArgs),
+                "MovePlayers" => BSATNHelpers.Decode<Reducer.MovePlayers>(encodedArgs),
                 "Set" => BSATNHelpers.Decode<Reducer.Set>(encodedArgs),
+                "UpdateUserInput" => BSATNHelpers.Decode<Reducer.UpdateUserInput>(encodedArgs),
                 var reducer => throw new ArgumentOutOfRangeException("Reducer", $"Unknown reducer {reducer}")
             };
         }
@@ -496,7 +500,9 @@ namespace SpacetimeDB.Types
                 Reducer.ClientConnected args => Reducers.InvokeClientConnected(eventContext, args),
                 Reducer.ClientDisconnected args => Reducers.InvokeClientDisconnected(eventContext, args),
                 Reducer.EnterWorld args => Reducers.InvokeEnterWorld(eventContext, args),
+                Reducer.MovePlayers args => Reducers.InvokeMovePlayers(eventContext, args),
                 Reducer.Set args => Reducers.InvokeSet(eventContext, args),
+                Reducer.UpdateUserInput args => Reducers.InvokeUpdateUserInput(eventContext, args),
                 _ => throw new ArgumentOutOfRangeException("Reducer", $"Unknown reducer {reducer}")
             };
         }

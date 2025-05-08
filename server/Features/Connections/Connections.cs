@@ -33,7 +33,7 @@ public partial class Connections
             return;
         }
 
-        ctx.Db.Entities.Id.Delete(user.UserId);
+        ctx.Db.Entities.EntityId.Delete(user.UserId);
         ctx.Db.LoggedOutUsers.Insert(user);
         ctx.Db.Users.Identity.Delete(user.Identity);
     }

@@ -13,17 +13,17 @@ namespace SpacetimeDB.Types
     [DataContract]
     public sealed partial class Entity
     {
-        [DataMember(Name = "Id")]
-        public uint Id;
+        [DataMember(Name = "EntityId")]
+        public uint EntityId;
         [DataMember(Name = "Position")]
         public SpacetimeVector3 Position;
 
         public Entity(
-            uint Id,
+            uint EntityId,
             SpacetimeVector3 Position
         )
         {
-            this.Id = Id;
+            this.EntityId = EntityId;
             this.Position = Position;
         }
 

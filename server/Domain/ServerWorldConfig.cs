@@ -6,12 +6,10 @@ namespace StdbModule.domain;
 public partial struct ServerWorldConfig
 {
     [PrimaryKey] public uint Id;
+    
     public ulong WorldSize;
 
-    public ServerWorldConfig()
-    {
-        
-    }
+    public ServerWorldConfig() { }
 
     public ServerWorldConfig(uint id, ulong worldSize)
     {
