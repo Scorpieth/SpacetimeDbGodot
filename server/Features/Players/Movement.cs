@@ -34,7 +34,7 @@ public static partial class Movement
             playerEntity.Position = newPos;
             ctx.Db.Entities.EntityId.Update(playerEntity);
         }
-
+        
         ctx.Db.MovePlayersSchedules.Insert(new MovePlayersSchedule()
         {
             ScheduleAt = new ScheduleAt.Time(ctx.Timestamp + new TimeDuration(33333)),

@@ -53,6 +53,7 @@ public sealed class SpacetimeClient
         Instance._connection = Instance.CreateSpacetimeConnection(Host, Dbname, AuthToken.Token);
         GD.Print("Registering callbacks..");
         Instance._connection.RegisterUsersCallbacks();
+        Instance._connection.RegisterEntityCallbacks();
     }
 
     /// <summary>

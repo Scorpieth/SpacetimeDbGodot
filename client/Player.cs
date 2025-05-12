@@ -2,7 +2,7 @@ using Godot;
 
 namespace GodotClient;
 
-public partial class Player : CharacterBody3D
+public partial class Player : Node3D
 {
     [Export] public Label3D PlayerName;
 }

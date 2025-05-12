@@ -44,9 +44,6 @@ mesh = SubResource("BoxMesh_vh432")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 shape = SubResource("BoxShape3D_mkqyr")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.46147, 0.887156, 0, -0.887156, 0.46147, 0, 29.0166, 12.2357)
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_mkqyr")
 
@@ -54,5 +51,5 @@ environment = SubResource("Environment_mkqyr")
 transform = Transform3D(1, 0, 0, 0, 0.794203, 0.607653, 0, -0.607653, 0.794203, 0, 2.65064, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0967, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75915, 1.0967, 0)
 mesh = SubResource("BoxMesh_rlkt5")

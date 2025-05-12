@@ -18,7 +18,8 @@ public partial class MainMenu : Control
         {
             var world = _world.Instantiate<TestWorldMap>();
             GetTree().Root.AddChild(world);
-            world.SetUp(SpacetimeClient.Db.Worlds.Id.Find(0)?.WorldSize ?? 1);
+            world.SetUp();
+            SpacetimeClient.Reducers.EnterWorld();
             Hide();
             
             

@@ -1,8 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://da1r7u0pyn6wn"]
 
 [ext_resource type="Script" uid="uid://dyp5ac8wlen6b" path="res://Player.cs" id="1_xhfnw"]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0rwas"]
+[ext_resource type="Script" uid="uid://cv07ywqb3347m" path="res://Components/MovementSynchronizer.cs" id="2_kpjcp"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0rwas"]
 albedo_color = Color(4.42803e-06, 0.778212, 0.905214, 1)
@@ -12,12 +11,9 @@ metallic_specular = 1.0
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_0rwas"]
 material = SubResource("StandardMaterial3D_0rwas")
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("PlayerName")]
+[node name="Player" type="Node3D" node_paths=PackedStringArray("PlayerName")]
 script = ExtResource("1_xhfnw")
 PlayerName = NodePath("PlayerName")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("CapsuleShape3D_0rwas")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_0rwas")
@@ -27,3 +23,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.20515, 0)
 pixel_size = 0.01
 billboard = 1
 text = "Placeholder"
+
+[node name="MovementSynchronizer" type="Node" parent="."]
+script = ExtResource("2_kpjcp")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.431173, 0.902269, 0, -0.902269, 0.431173, 0, 10.6129, 5.46588)
