@@ -34,6 +34,7 @@ public partial class Connections
         }
 
         ctx.Db.Entities.EntityId.Delete(user.UserId);
+        ctx.Db.Players.UserId.Delete(user.UserId);
         ctx.Db.LoggedOutUsers.Insert(user);
         ctx.Db.Users.Identity.Delete(user.Identity);
     }

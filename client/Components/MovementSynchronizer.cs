@@ -19,13 +19,18 @@ public partial class MovementSynchronizer : Node
     {
         var dir = Input.GetVector("Left", "Right", "Up", "Down");
         // Allows for movement dependent on the rotation of the parent node
-        var normalizedDir = -_parent.Transform.Basis.Z * dir.Y + _parent.Transform.Basis.X * dir.X;
+        var normalizedDir = _parent.Transform.Basis.Z * dir.Y + _parent.Transform.Basis.X * dir.X;
+
+        if (!dir.IsZeroApprox())
+        {
+            GD.Print(dir);
+        }
         
         if (delta > _tickRate)
         {
             return;
         }
-        GD.Print("Sending Input to Server");
-        SpacetimeClient.Reducers.UpdateUserInput(new SpacetimeVector3(normalizedDir.X, 0, normalizedDir.Y));
+        
+        SpacetimeClient.Reducers.UpdateUserInput(new SpacetimeVector3(normalizedDir.X, 0, normalizedDir.Z));
     }
 }

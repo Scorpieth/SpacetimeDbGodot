@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Concurrent;
 using Godot;
+using GodotClient.Autoload;
 using SpacetimeDB;
 using SpacetimeDB.Types;
 
@@ -85,6 +86,8 @@ public sealed class SpacetimeClient
         AuthToken.SaveToken(token);
         
         connection.SubscriptionBuilder().SubscribeToAllTables();
+        
+        GameEvents.Instance.EmitConnectedToSpacetime();
     }
 
     private void OnConnectError(Exception e)

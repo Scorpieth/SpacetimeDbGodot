@@ -9,11 +9,15 @@ public partial class MainMenu : Control
     [Export] private TextEdit _nameEdit;
     [Export] private Button _goToWorldButton;
     [Export] private Button _setNameButton;
-
+    [Export] private Label _connectingLabel;
+    
     [Export] private PackedScene _world;
 
     public override void _Ready()
     {
+        _goToWorldButton.Disabled = true;
+        _setNameButton.Disabled = true;
+        
         _goToWorldButton.Pressed += () =>
         {
             var world = _world.Instantiate<TestWorldMap>();
@@ -21,8 +25,6 @@ public partial class MainMenu : Control
             world.SetUp();
             SpacetimeClient.Reducers.EnterWorld();
             Hide();
-            
-            
         };
         _setNameButton.Pressed += () =>
         {
@@ -37,6 +39,13 @@ public partial class MainMenu : Control
         GameEvents.Instance.OnUserNameUpdated += userName =>
         {
             _nameValue.Text = userName;
+        };
+
+        GameEvents.Instance.ConnectedToSpacetime += () =>
+        {
+            _goToWorldButton.Disabled = false;
+            _setNameButton.Disabled = false;
+            _connectingLabel.Text = "Connected!";
         };
     }
 }

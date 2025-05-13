@@ -28,7 +28,9 @@ public static class EntityCallbacks
             GD.PrintErr("Could not find player");
             return;
         }
-        player.GlobalPosition = player.GlobalPosition.Lerp(new Vector3(newrow.Position.X, newrow.Position.Y, newrow.Position.Z), 0.8f);
+        
+        GD.Print($"New Pos player update: {newrow.Position}");
+        player.GlobalPosition = new Vector3(newrow.Position.X, newrow.Position.Y, newrow.Position.Z);
     }
 
     private static void OnInsertPlayer(EventContext context, SpacetimeDB.Types.Player row)

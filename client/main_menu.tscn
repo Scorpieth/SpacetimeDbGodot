@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://mu7o1eww5drr" path="res://MainMenu.cs" id="1_06t4h"]
 [ext_resource type="PackedScene" uid="uid://mcd1d135rwae" path="res://TestWorldMap.tscn" id="2_7vrkn"]
 
-[node name="Main Menu" type="Control" node_paths=PackedStringArray("_nameValue", "_nameEdit", "_goToWorldButton", "_setNameButton")]
+[node name="Main Menu" type="Control" node_paths=PackedStringArray("_nameValue", "_nameEdit", "_goToWorldButton", "_setNameButton", "_connectingLabel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -16,6 +16,7 @@ _nameValue = NodePath("Panel/HBoxContainer/NameValue")
 _nameEdit = NodePath("VBoxContainer/TextEdit")
 _goToWorldButton = NodePath("VBoxContainer/GoToWorld")
 _setNameButton = NodePath("VBoxContainer/SetName")
+_connectingLabel = NodePath("Connecting Label")
 _world = ExtResource("2_7vrkn")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
@@ -40,7 +41,7 @@ text = "Enter World"
 [node name="TextEdit" type="TextEdit" parent="VBoxContainer"]
 custom_minimum_size = Vector2(70, 40)
 layout_mode = 2
-text = "Put your name here"
+placeholder_text = "Put name here"
 
 [node name="SetName" type="Button" parent="VBoxContainer"]
 layout_mode = 2
@@ -64,3 +65,12 @@ text = "Name:"
 
 [node name="NameValue" type="Label" parent="Panel/HBoxContainer"]
 layout_mode = 2
+
+[node name="Connecting Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 480.0
+offset_top = 236.0
+offset_right = 673.0
+offset_bottom = 259.0
+text = "Connecting to Spacetime"
+horizontal_alignment = 1

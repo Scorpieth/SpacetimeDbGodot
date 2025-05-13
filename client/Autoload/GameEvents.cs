@@ -9,6 +9,9 @@ public partial class GameEvents : RefCounted
     private static GameEvents _instance;
     
     public static GameEvents Instance => _instance ??= new();
+
+    [Signal]
+    public delegate void ConnectedToSpacetimeEventHandler();
     
     [Signal]
     public delegate void OnUserInsertedEventHandler(GameUser user);
@@ -34,4 +37,6 @@ public partial class GameEvents : RefCounted
     public void EmitUserNameUpdated(string userName) => EmitSignal(SignalName.OnUserNameUpdated, userName);
 
     public void EmitEnterWorld() => EmitSignal(SignalName.OnEnterWorld);
+
+    public void EmitConnectedToSpacetime() => EmitSignalConnectedToSpacetime();
 }
